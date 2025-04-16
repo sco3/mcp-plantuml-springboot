@@ -1,0 +1,7 @@
+{"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"claude-ai","version":"0.1.0"}},"jsonrpc":"2.0","id":0}
+{"method":"notifications/initialized","jsonrpc":"2.0"}
+{"method":"resources/list","params":{},"jsonrpc":"2.0","id":1}
+{"method":"tools/list","params":{},"jsonrpc":"2.0","id":3}
+{"method":"prompts/list","params":{},"jsonrpc":"2.0","id":4}
+{"method":"prompts/list","params":{},"jsonrpc":"2.0","id":30}
+{"method":"tools/call","params":{"name":"getAlerts","arguments":{"state":"CA"}},"jsonrpc":"2.0","id":31}
