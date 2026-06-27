@@ -1,7 +1,8 @@
 package sco3;
 
+import static java.util.Base64.getEncoder;
+
 import java.io.ByteArrayOutputStream;
-import java.util.Base64;
 
 import org.springframework.ai.mcp.annotation.McpTool;
 import org.springframework.ai.tool.annotation.ToolParam;
@@ -24,7 +25,7 @@ public class PlantUmlTool {
 		reader.outputImage(os, new FileFormatOption(FileFormat.SVG));
 		byte[] imageBytes = os.toByteArray();
 
-		String base64 = Base64.getEncoder().encodeToString(imageBytes);
+		String base64 = getEncoder().encodeToString(imageBytes);
 
 		ImageContent content = ImageContent.builder(base64, "image/svg+xml").build();
 
