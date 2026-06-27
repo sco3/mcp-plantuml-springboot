@@ -59,9 +59,10 @@ RESPONSE=$(curl -s -X POST \
     }
   }' "$URL")
 
-echo "$RESPONSE" | jq .
+SSE_DATA=$(echo "$RESPONSE" | grep '^data:' | sed 's/^data: *//')
+echo "$SSE_DATA" | jq .
 
-BASE64_CONTENT=$(echo "$RESPONSE" | jq -r '.result.content[0].data // empty')
+BASE64_CONTENT=$(echo "$SSE_DATA" | jq -r '.result.content[0].data // empty')
 if [[ -z "$BASE64_CONTENT" ]]; then
   echo "Error: No base64 content in response"
   exit 1
