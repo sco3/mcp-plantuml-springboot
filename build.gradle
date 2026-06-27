@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.4.4'
+	id 'org.springframework.boot' version '4.1.0'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'eclipse'
 }
@@ -19,13 +19,14 @@ repositories {
 }
 
 ext {
-	set('springAiVersion', "1.0.0-M7")
+	set('springAiVersion', "2.0.0")
 }
 
 dependencies {
-	implementation 'org.springframework.ai:spring-ai-starter-mcp-server'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation "org.springframework.ai:spring-ai-starter-mcp-server-webmvc"
+    implementation "org.springframework.ai:spring-ai-mcp-annotations"
+	implementation 'net.sourceforge.plantuml:plantuml-mit:1.2026.1'
+
 }
 
 dependencyManagement {

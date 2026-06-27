@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: mcp-spring-ai
+
+  ai:
+    mcp:
+      server:
+        tool-callback-converter: true
+        enabled: true
+        protocol: STREAMABLE
+        name: random-number-service
+        version: 1.0.0
+
+        streamable-http:
+          mcp-endpoint: /mcp
+          keep-alive-interval: 30s
+
+        annotation-scanner:
+          enabled: true
+
+        capabilities:
+          tool: true
+          resource: true
+          prompt: true
+          completion: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.ai: DEBUG
+    io.modelcontextprotocol: DEBUG
+    org.springframework.web: INFO

@@ -1,16 +1,30 @@
 package sco3;
 
-import org.springframework.ai.tool.annotation.Tool;
+import java.io.ByteArrayOutputStream;
+import java.util.Base64;
+
+import org.springframework.ai.mcp.annotation.McpTool;
 import org.springframework.ai.tool.annotation.ToolParam;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+import io.modelcontextprotocol.spec.McpSchema.ImageContent;
+import net.sourceforge.plantuml.FileFormat;
+import net.sourceforge.plantuml.FileFormatOption;
+import net.sourceforge.plantuml.SourceStringReader;
+
+@Component
 public class MyTools {
-	@Tool(description = "add two numbers")
-	public Integer add(@ToolParam(description = "first number") int a,
-			@ToolParam(description = "second number") int b) {
+	@McpTool(description = "Render PlantUML into SVG image (base64 encoded)")
+	public ImageContent renderDiagram(@ToolParam(description = "PlantUML source") String source) throws Exception {
 
-		return a + b;
+		SourceStringReader reader = new SourceStringReader(source);
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+		reader.generateImage(os, new FileFormatOption(FileFormat.SVG));
+		byte[] imageBytes = os.toByteArray();
+
+		String base64 = Base64.getEncoder().encodeToString(imageBytes);
+
+		return ImageContent.builder(base64, "image/svg+xml").build();
 	}
-
 }
