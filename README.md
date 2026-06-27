@@ -57,4 +57,12 @@ Returns base64-encoded SVG content with MIME type `image/svg+xml`.
 1. Open [MCP Inspector](https://modelcontextprotocol.github.io/inspector/) (v0.22.0+)
 2. Set Transport Type to **Streamable HTTP**
 3. Enter URL: `http://localhost:8080/mcp`
-4. Connect and call the `renderDiagram` tool with your PlantUML source
+4. Connect and call the `renderDiagram` tool with your PlantUML source:
+
+```
+@startuml
+Alice -> Bob : Hello
+@enduml
+```
+
+
