@@ -5,11 +5,8 @@ spring:
   ai:
     mcp:
       server:
-        tool-callback-converter: true
         enabled: true
         protocol: STREAMABLE
-        name: random-number-service
-        version: 1.0.0
 
         streamable-http:
           mcp-endpoint: /mcp
@@ -23,12 +20,3 @@ spring:
           resource: true
           prompt: true
           completion: true
-
-server:
-  port: 8080
-
-logging:
-  level:
-    org.springframework.ai: DEBUG
-    io.modelcontextprotocol: DEBUG
-    org.springframework.web: INFO
