@@ -21,7 +21,7 @@ public class MyTools {
 		SourceStringReader reader = new SourceStringReader(source);
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-		reader.generateImage(os, new FileFormatOption(FileFormat.SVG));
+		reader.outputImage(os, new FileFormatOption(FileFormat.SVG));
 		byte[] imageBytes = os.toByteArray();
 
 		String base64 = Base64.getEncoder().encodeToString(imageBytes);
