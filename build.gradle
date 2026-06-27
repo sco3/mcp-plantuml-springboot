@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '4.1.0'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'eclipse'
+	id 'jacoco'
 }
 
 group = 'sco3'
@@ -27,6 +28,7 @@ dependencies {
     implementation "org.springframework.ai:spring-ai-mcp-annotations"
 	implementation 'net.sourceforge.plantuml:plantuml-mit:1.2026.1'
 
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
@@ -37,4 +39,18 @@ dependencyManagement {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+
+test {
+    finalizedBy jacocoTestReport 
+}
+
+jacocoTestReport {
+    dependsOn test 
+    reports {
+        xml.required = false
+        csv.required = false
+        html.required = true 
+    }
 }
