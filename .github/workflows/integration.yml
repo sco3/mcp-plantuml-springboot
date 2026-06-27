@@ -1,0 +1,32 @@
+name: Integration Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  integration-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Build
+        run: ./gradlew bootJar
+
+      - name: Start server
+        run: |
+          java -jar build/libs/mcp-spring-ai-0.0.1-SNAPSHOT.jar &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:8080/mcp && break || sleep 1
+          done
+
+      - name: Run integration test
+        run: bash curl-client.sh
