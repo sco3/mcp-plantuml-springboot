@@ -24,7 +24,7 @@ curl -s -D "$TMPDIR/headers.txt" -X POST \
 echo "Init Response:"
 cat "$TMPDIR/init.json"
 
-SESSION_ID=$(grep -i "mcp-session-id" "$TMPDIR/headers.txt" | awk '{print $2}' | tr -d '\r')
+SESSION_ID=$(grep -i "mcp-session-id" "$TMPDIR/headers.txt" | awk '{print $2}' | tr -d '\r' || true)
 if [[ -z "$SESSION_ID" ]]; then
   echo "Error: Mcp-Session-Id not found in headers" >&2
   cat "$TMPDIR/headers.txt"
