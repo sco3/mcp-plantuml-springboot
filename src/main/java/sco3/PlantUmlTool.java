@@ -14,7 +14,7 @@ import net.sourceforge.plantuml.FileFormatOption;
 import net.sourceforge.plantuml.SourceStringReader;
 
 @Component
-public class MyTools {
+public class PlantUmlTool {
 	@McpTool(description = "Render PlantUML into SVG image (base64 encoded)")
 	public CallToolResult renderDiagram(@ToolParam(description = "PlantUML source") String source) throws Exception {
 
